@@ -1,0 +1,6 @@
+{
+  "name": "Molita — Nutricosmétique & Bien-être Suisse",
+  "description": "Site officiel de Molita: gamme suisse de gummies nutricosmétiques et de bien-être premium pour la mémoire, la vitalité, le sommeil, les cheveux et la peau, et la détente.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
