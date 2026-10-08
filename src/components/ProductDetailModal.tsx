@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ui, localizeProduct } from '../i18n/content';
+import { useLanguage } from '../i18n/LanguageContext';
 import { Product } from '../types';
 import { X, CheckCircle2, Sparkles, PhoneCall, ShieldCheck, Clock, HeartHandshake } from 'lucide-react';
 
@@ -9,11 +11,14 @@ interface ProductDetailModalProps {
 }
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
-  product,
+  product: baseProduct,
   onClose,
   onRequestCallback,
 }) => {
-  if (!product) return null;
+  const { language } = useLanguage();
+  const c = ui[language].detail;
+  if (!baseProduct) return null;
+  const product = localizeProduct(baseProduct, language);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-stone-900/60 backdrop-blur-md animate-fadeIn overflow-y-auto">
@@ -55,7 +60,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <button
             onClick={onClose}
             className="relative z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
-            aria-label="Fermer"
+            aria-label={c.close}
           >
             <X className="w-6 h-6" />
           </button>
@@ -88,11 +93,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 "{product.description}"
               </h3>
               <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1 text-xs text-stone-600">
-                <span><strong>Arôme:</strong> {product.taste}</span>
+                <span><strong>{c.aroma}:</strong> {product.taste}</span>
                 <span>•</span>
-                <span><strong>Format:</strong> {product.countPerBottle} gummies (Rituel 30 jours)</span>
+                <span><strong>{c.format}:</strong> {c.formatValue(product.countPerBottle)}</span>
                 <span>•</span>
-                <span className="text-emerald-700 font-semibold">Qualité & Formulation Suisse</span>
+                <span className="text-emerald-700 font-semibold">{c.swiss}</span>
               </div>
             </div>
           </div>
@@ -103,7 +108,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="bg-white p-5 rounded-2xl border border-stone-200/70 shadow-xs space-y-3">
               <h4 className="font-serif text-base font-semibold text-stone-900 flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: product.accentHex }} />
-                Bénéfices Principaux
+                {c.benefits}
               </h4>
               <ul className="space-y-2.5 text-xs text-stone-700">
                 {product.benefits.map((benefit, idx) => (
@@ -119,14 +124,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="bg-white p-5 rounded-2xl border border-stone-200/70 shadow-xs space-y-3">
               <h4 className="font-serif text-base font-semibold text-stone-900 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-purple-600" />
-                Pour qui ?
+                {c.forWhom}
               </h4>
               <p className="text-xs text-stone-600 leading-relaxed pt-1">
                 {product.targetAudience}
               </p>
               <div className="p-3 rounded-xl bg-stone-50 border border-stone-200/80 text-xs text-stone-600">
-                <span className="font-semibold text-stone-800 block mb-0.5">Rituel Nutricosmétique & Bien-être</span>
-                Intégrez cette formule douce et végétale dans votre routine quotidienne pour des résultats visibles et durables.
+                <span className="font-semibold text-stone-800 block mb-0.5">{c.ritualTitle}</span>
+                {c.ritualText}
               </div>
             </div>
           </div>
@@ -135,7 +140,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="flex items-center gap-2 text-xs text-stone-500 pt-2 border-t border-stone-200">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>
-              Soin nutricosmétique et bien-être certifié conforme aux normes suisses. Échange personnalisé avec nos experts sur demande.
+              {c.certified}
             </span>
           </div>
         </div>
@@ -143,16 +148,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Modal Footer / Consultation CTA */}
         <div className="p-6 bg-stone-100/90 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <span className="text-xs text-stone-500 block">Rituel Personnalisé Suisse</span>
+            <span className="text-xs text-stone-500 block">{c.footerLabel}</span>
             <span className="text-lg font-serif font-bold text-stone-900">
-              Conseil & Accompagnement Dédié
+              {c.footerTitle}
             </span>
           </div>
 
           <button
             onClick={() => {
               onClose();
-              onRequestCallback(product);
+              onRequestCallback(baseProduct);
             }}
             className="w-full sm:w-auto px-8 py-3.5 rounded-full text-white font-semibold text-sm shadow-md hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2"
             style={{
@@ -160,7 +165,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             }}
           >
             <PhoneCall className="w-4 h-4" />
-            Être conseillé pour {product.name}
+            {c.advise(product.name)}
           </button>
         </div>
       </div>

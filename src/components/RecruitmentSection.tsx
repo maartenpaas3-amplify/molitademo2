@@ -18,9 +18,9 @@ export const RecruitmentSection: React.FC = () => {
   const [langError, setLangError] = useState(false);
 
   const availableLanguages = [
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'de', label: 'Deutsch / Schwyzerdütsch', flag: '🇩🇪' },
-    { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+    { code: 'fr', label: 'Français', flag: '' },
+    { code: 'de', label: 'Deutsch / Schwyzerdütsch', flag: '' },
+    { code: 'it', label: 'Italiano', flag: '' },
   ];
 
   const handleLanguageToggle = (code: string) => {
@@ -87,7 +87,7 @@ export const RecruitmentSection: React.FC = () => {
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                 <div className="p-3 rounded-xl bg-stone-800/80 border border-stone-700/80 text-xs flex items-center gap-2 shadow-2xs">
-                  <span className="text-sm">🇫🇷</span>
+                  <span className="text-sm"></span>
                   <div>
                     <span className="font-semibold text-stone-200 block">Français</span>
                     <span className="text-[10px] text-stone-400">Courant / Maternel</span>
@@ -95,7 +95,7 @@ export const RecruitmentSection: React.FC = () => {
                 </div>
 
                 <div className="p-3 rounded-xl bg-stone-800/80 border border-stone-700/80 text-xs flex items-center gap-2 shadow-2xs">
-                  <span className="text-sm">🇩🇪</span>
+                  <span className="text-sm"></span>
                   <div>
                     <span className="font-semibold text-stone-200 block">Deutsch</span>
                     <span className="text-[10px] text-stone-400">Schwyzerdütsch</span>
@@ -103,7 +103,7 @@ export const RecruitmentSection: React.FC = () => {
                 </div>
 
                 <div className="p-3 rounded-xl bg-stone-800/80 border border-stone-700/80 text-xs flex items-center gap-2 shadow-2xs">
-                  <span className="text-sm">🇮🇹</span>
+                  <span className="text-sm"></span>
                   <div>
                     <span className="font-semibold text-stone-200 block">Italiano</span>
                     <span className="text-[10px] text-stone-400">Avancé / Courant</span>

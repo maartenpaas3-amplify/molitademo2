@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ui } from '../i18n/content';
 import { WHATSAPP_URL } from '../config';
 
 interface FAQSectionProps {
@@ -35,7 +36,7 @@ const FAQ_QUESTION_ICONS = [
 ];
 
 export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenCallback }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   // Store open state for each item (first item open by default for discoverability)
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
@@ -150,10 +151,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenCallback }) => {
 
         <div className="text-left relative z-10">
           <h3 className="font-semibold text-stone-900 text-sm sm:text-base">
-            Vous avez une autre question spécifique ?
+            {ui[language].misc.faqQ}
           </h3>
           <p className="text-xs sm:text-sm text-stone-500">
-            Nos conseillers en Suisse vous répondent avec bienveillance.
+            {ui[language].misc.faqSub}
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0 relative z-10">
@@ -173,7 +174,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenCallback }) => {
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-stone-900 text-white text-xs font-semibold hover:bg-stone-800 transition-colors shadow-2xs hover:scale-105 active:scale-95 duration-200"
             >
               <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
-              Être rappelé
+              {ui[language].misc.faqCall}
             </button>
           )}
         </div>

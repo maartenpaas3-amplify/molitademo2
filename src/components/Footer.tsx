@@ -3,6 +3,7 @@ import { Logo } from './Logo';
 import { PhoneCall, MessageCircle, Mail, MapPin, ShieldCheck, Instagram, Facebook, Linkedin } from 'lucide-react';
 import { PHONE_NUMBER, PHONE_LINK, WHATSAPP_DISPLAY, WHATSAPP_URL, CONTACT_EMAIL } from '../config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ui } from '../i18n/content';
 
 interface FooterProps {
   onNavigateTo: (sectionId: string) => void;
@@ -10,7 +11,9 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const f = ui[language].footer;
+  const m = ui[language].misc;
 
   return (
     <footer className="bg-stone-950 text-stone-300 pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-t border-stone-800 font-sans">
@@ -20,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) 
         <div className="lg:col-span-2 space-y-4">
           <Logo variant="light" size="md" />
           <p className="text-xs text-stone-400 max-w-sm leading-relaxed">
-            Molita est la marque suisse spécialisée dans les gummies nutricosmétiques et de bien-être de haute concentration. Conçu et formulé selon les normes de qualité les plus exigeantes.
+            {f.about}
           </p>
           <div className="flex items-center gap-3 pt-2">
             <span className="p-2 rounded-xl bg-stone-900 border border-stone-800 text-stone-400 hover:text-white cursor-pointer transition-colors">
@@ -38,32 +41,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) 
         {/* Col 2: Navigation */}
         <div className="space-y-3">
           <h4 className="font-serif text-sm font-semibold text-white uppercase tracking-wider">
-            Gamme de Produits
+            {m.range}
           </h4>
           <ul className="space-y-2 text-xs text-stone-400">
             <li>
               <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                Gummies Mémoire (Rose)
+                {f.memoire}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                Gummies Vitalité (Orange)
+                {f.vitalite}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                Gummies Sommeil (Bleu)
+                {f.sommeil}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                Gummies Cheveux & Peau (Vert)
+                {f.peau}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                Gummies Détente (Cyan)
+                {f.detente}
               </button>
             </li>
           </ul>
@@ -72,32 +75,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) 
         {/* Col 3: Entreprise */}
         <div className="space-y-3">
           <h4 className="font-serif text-sm font-semibold text-white uppercase tracking-wider">
-            Molita & Co
+            {m.company}
           </h4>
           <ul className="space-y-2 text-xs text-stone-400">
             <li>
               <button onClick={() => onNavigateTo('histoire')} className="hover:text-white transition-colors">
-                Notre Histoire
+                {f.story}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('diagnostic')} className="hover:text-white transition-colors">
-                Diagnostic Personnalisé
+                {f.quiz}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('avis')} className="hover:text-white transition-colors">
-                Avis Clients Suisse
+                {f.reviews}
               </button>
             </li>
             <li>
               <button onClick={() => onNavigateTo('faq')} className="hover:text-white transition-colors">
-                Questions Fréquentes (FAQ)
+                {f.faq}
               </button>
             </li>
             <li>
               <button onClick={() => onOpenCallback()} className="hover:text-white transition-colors">
-                Conseiller Téléphonique Suisse 🇨🇭
+                {f.advisor}
               </button>
             </li>
           </ul>
@@ -106,12 +109,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) 
         {/* Col 4: Contact & Locations */}
         <div className="space-y-3">
           <h4 className="font-serif text-sm font-semibold text-white uppercase tracking-wider">
-            Bureaux & Contact
+            {m.offices}
           </h4>
           <div className="space-y-2.5 text-xs text-stone-400">
             <div className="flex items-start gap-2">
               <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-              <span><strong>Suisse :</strong> Rue du Rhône 42, 1204 Genève</span>
+              <span><strong>{m.swissLabel}</strong> Rue du Rhône 42, 1204 Genève</span>
             </div>
             <div className="flex items-center gap-2 pt-1">
               <PhoneCall className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -146,12 +149,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) 
       <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-500" />
-          <span>© 2026 Molita S.A. — Tous droits réservés. Qualité Suisse Certifiée.</span>
+          <span>{f.rights}</span>
         </div>
         <div className="flex items-center gap-4">
-          <a href="#hero" className="hover:text-stone-300 transition-colors">Mentions Légales</a>
+          <a href="#hero" className="hover:text-stone-300 transition-colors">{m.legal}</a>
           <span>•</span>
-          <a href="#hero" className="hover:text-stone-300 transition-colors">Politique de Confidentialité</a>
+          <a href="#hero" className="hover:text-stone-300 transition-colors">{m.privacy}</a>
         </div>
       </div>
     </footer>

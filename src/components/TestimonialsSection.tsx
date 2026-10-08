@@ -2,9 +2,10 @@ import React from 'react';
 import { Star, ShieldCheck, Quote, Users } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { TrustBadge } from './TrustBadge';
+import { ui } from '../i18n/content';
 
 export const TestimonialsSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="avis" className="py-14 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative font-sans">
@@ -69,10 +70,10 @@ export const TestimonialsSection: React.FC = () => {
                   <span className="font-semibold text-stone-900 block">
                     {review.name}
                   </span>
-                  <span className="text-stone-500">{review.city}, Suisse 🇨🇭</span>
+                  <span className="text-stone-500">{review.city}, {ui[language].misc.country}</span>
                 </div>
               </div>
-              <TrustBadge size="compact" icon={ShieldCheck} title="Vérifié" />
+              <TrustBadge size="compact" icon={ShieldCheck} title={ui[language].verified} />
             </div>
           </div>
         ))}

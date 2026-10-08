@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { ui, cantons, localizeProduct } from '../i18n/content';
+import { useLanguage } from '../i18n/LanguageContext';
 import { Product } from '../types';
 import {
   MOLITA_PRODUCTS,
@@ -19,17 +21,21 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
   onClose,
   preselectedProduct,
 }) => {
+  const { language: siteLang, t } = useLanguage();
+  const c = ui[siteLang].callback;
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [canton, setCanton] = useState('Genève');
-  const [preferredTime, setPreferredTime] = useState('Matin (09h - 12h)');
+  const [preferredTime, setPreferredTime] = useState('0');
   const [productId, setProductId] = useState<string>(() =>
     resolveProductId(preselectedProduct)
   );
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const [language, setLanguage] = useState<'fr' | 'de' | 'it'>('fr');
+  const [language, setLanguage] = useState<'fr' | 'de' | 'it'>(siteLang);
+  // keep the call-language radio in sync with the site language
+  useEffect(() => { setLanguage(siteLang); setPreferredTime('0'); }, [siteLang]);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -69,6 +75,12 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
   }, [isProductDropdownOpen]);
 
   if (!isOpen) return null;
+  const locName = (id: string, fallback: { name: string; subName: string }) => {
+    const comp = t.complementary.products.find((x) => x.id === id);
+    if (comp) return { name: comp.name, subName: comp.subName };
+    const p = MOLITA_PRODUCTS.find((x) => x.id === id);
+    return p ? localizeProduct(p, siteLang) : fallback;
+  };
 
   const currentSelectedProduct =
     ALL_PRODUCTS_OPTIONS.find((p) => p.id === productId) ||
@@ -102,19 +114,19 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
           <button
             onClick={onClose}
             className="absolute top-5 right-5 p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer z-10"
-            aria-label="Fermer"
+            aria-label={c.close}
           >
             <X className="w-5 h-5" />
           </button>
           <div className="relative z-10 flex items-center gap-2 text-xs font-semibold text-pink-300 uppercase tracking-wider mb-1">
             <PhoneCall className="w-3.5 h-3.5" />
-            Service Client Suisse 🇨🇭
+            {c.eyebrow}
           </div>
           <h3 className="relative z-10 font-serif text-2xl text-white">
-            Demander un rappel gratuit
+            {c.title}
           </h3>
           <p className="relative z-10 text-xs text-stone-300 mt-1 font-sans">
-            Un conseiller Molita dédié vous recontacte à l’horaire de votre choix pour vous guider.
+            {c.sub}
           </p>
         </div>
 
@@ -126,16 +138,16 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h4 className="font-serif text-xl font-bold text-stone-900">
-                Demande transmise avec succès !
+                {c.okTitle}
               </h4>
               <p className="text-xs text-stone-600 max-w-xs mx-auto leading-relaxed">
-                Merci <strong className="text-stone-900">{fullName}</strong>. Un conseiller vous rappellera à la plage horaire <strong className="text-stone-900">{preferredTime}</strong> au <strong className="text-stone-900">{phone}</strong>.
+                {c.okText(fullName, c.times[Number(preferredTime)] ?? c.times[0], phone)}
               </p>
               <button
                 onClick={handleReset}
                 className="mt-4 px-6 py-2.5 rounded-full bg-stone-900 text-white text-xs font-semibold hover:bg-stone-800 transition-colors cursor-pointer"
               >
-                Fermer la fenêtre
+                {c.okClose}
               </button>
             </div>
           ) : (
@@ -143,7 +155,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
               {/* Product Choice Custom Dropdown with All 5 Gummies + 3 Complementary Care Products */}
               <div className="relative" ref={dropdownRef}>
                 <label className="block font-semibold text-stone-800 mb-1">
-                  Produit de votre choix
+                  {c.product}
                 </label>
 
                 {/* Trigger Button */}
@@ -160,11 +172,11 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                 >
                   <span className="truncate">
                     <span className="font-medium text-stone-900">
-                      {currentSelectedProduct.name}
+                      {locName(currentSelectedProduct.id, currentSelectedProduct).name}
                     </span>
                     <span className="text-stone-500 font-normal">
                       {' '}
-                      — {currentSelectedProduct.subName}
+                      — {locName(currentSelectedProduct.id, currentSelectedProduct).subName}
                     </span>
                   </span>
                   <ChevronDown
@@ -179,7 +191,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                   <div className="absolute left-0 right-0 top-full mt-1.5 z-50 bg-white rounded-2xl border border-stone-200/90 shadow-2xl py-2 max-h-64 overflow-y-auto animate-fadeIn">
                     {/* Group 1: Nos 5 Formules Gummies */}
                     <div className="px-3 pt-1 pb-1 text-[10px] font-bold tracking-wider uppercase text-stone-400 font-sans">
-                      Nos 5 Formules Gummies
+                      {c.groupGummies}
                     </div>
                     <div className="px-1.5 space-y-0.5">
                       {MOLITA_PRODUCTS.map((p) => {
@@ -200,11 +212,11 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                           >
                             <span className="truncate">
                               <span className={isSelected ? 'font-semibold' : 'font-medium'}>
-                                {p.name}
+                                {locName(p.id, p).name}
                               </span>
                               <span className="text-stone-500 font-normal text-[11px]">
                                 {' '}
-                                — {p.subName}
+                                — {locName(p.id, p).subName}
                               </span>
                             </span>
                             {isSelected && (
@@ -220,7 +232,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
 
                     {/* Group 2: Nos Soins Complémentaires */}
                     <div className="px-3 pt-1 pb-1 text-[10px] font-bold tracking-wider uppercase text-stone-400 font-sans">
-                      Nos Soins Complémentaires
+                      {c.groupCare}
                     </div>
                     <div className="px-1.5 space-y-0.5">
                       {COMPLEMENTARY_PRODUCTS_DATA.map((p) => {
@@ -241,11 +253,11 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                           >
                             <span className="truncate">
                               <span className={isSelected ? 'font-semibold' : 'font-medium'}>
-                                {p.name}
+                                {locName(p.id, p).name}
                               </span>
                               <span className="text-stone-500 font-normal text-[11px]">
                                 {' '}
-                                — {p.subName}
+                                — {locName(p.id, p).subName}
                               </span>
                             </span>
                             {isSelected && (
@@ -263,12 +275,12 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-semibold text-stone-800 mb-1">
-                    Nom & Prénom *
+                    {c.name}
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="ex. Marc Dubois"
+                    placeholder={c.namePh}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -276,7 +288,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                 </div>
                 <div>
                   <label className="block font-semibold text-stone-800 mb-1">
-                    Numéro de Téléphone *
+                    {c.phone}
                   </label>
                   <input
                     type="tel"
@@ -293,37 +305,32 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-semibold text-stone-800 mb-1">
-                    Canton / Région (Suisse)
+                    {c.canton}
                   </label>
                   <select
                     value={canton}
                     onChange={(e) => setCanton(e.target.value)}
                     className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
                   >
-                    <option value="Genève">Genève (GE)</option>
-                    <option value="Vaud">Vaud (VD)</option>
-                    <option value="Valais">Valais (VS)</option>
-                    <option value="Neuchâtel">Neuchâtel (NE)</option>
-                    <option value="Fribourg">Fribourg (FR)</option>
-                    <option value="Jura">Jura (JU)</option>
-                    <option value="Zürich">Zürich (ZH)</option>
-                    <option value="Ticino">Ticino (TI)</option>
-                    <option value="Autre">Autre canton</option>
+                    {Object.entries(cantons[siteLang]).map(([k, v]) => (
+                      <option key={k} value={k}>{v}</option>
+                    ))}
+                    <option value="Autre">{c.other}</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block font-semibold text-stone-800 mb-1">
-                    Créneau de rappel souhaité
+                    {c.time}
                   </label>
                   <select
                     value={preferredTime}
                     onChange={(e) => setPreferredTime(e.target.value)}
                     className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2 text-xs text-stone-900 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
                   >
-                    <option value="Matin (09h - 12h)">Matin (09h - 12h)</option>
-                    <option value="Après-midi (14h - 17h)">Après-midi (14h - 17h)</option>
-                    <option value="Soir (17h - 19h)">Soir (17h - 19h)</option>
+                    {c.times.map((label, i) => (
+                      <option key={i} value={String(i)}>{label}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -331,7 +338,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
               {/* Preferred Language for Phone Call */}
               <div>
                 <label className="block font-semibold text-stone-800 mb-1">
-                  Langue parlée pour l'appel
+                  {c.lang}
                 </label>
                 <div className="flex items-center gap-3 pt-1">
                   <label className="flex items-center gap-1.5 cursor-pointer font-medium">
@@ -342,7 +349,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                       onChange={() => setLanguage('fr')}
                       className="text-purple-600"
                     />
-                    🇫🇷 Français
+                    Français
                   </label>
                   <label className="flex items-center gap-1.5 cursor-pointer font-medium">
                     <input
@@ -352,7 +359,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                       onChange={() => setLanguage('de')}
                       className="text-purple-600"
                     />
-                    🇩🇪 Deutsch
+                    Deutsch
                   </label>
                   <label className="flex items-center gap-1.5 cursor-pointer font-medium">
                     <input
@@ -362,7 +369,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                       onChange={() => setLanguage('it')}
                       className="text-purple-600"
                     />
-                    🇮🇹 Italiano
+                    Italiano
                   </label>
                 </div>
               </div>
@@ -378,7 +385,7 @@ export const CallbackModal: React.FC<CallbackModalProps> = ({
                 ) : (
                   <>
                     <PhoneCall className="w-3.5 h-3.5" />
-                    Confirmer ma demande de rappel
+                    {c.submit}
                   </>
                 )}
               </button>

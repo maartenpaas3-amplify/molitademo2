@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo';
 import { PhoneCall, MessageCircle, Menu, X, Sparkles, Instagram, Facebook, Linkedin } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ui } from '../i18n/content';
 import { LanguageSelector } from './LanguageSelector';
 import { WHATSAPP_URL } from '../config';
 
@@ -14,7 +15,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCallback, onNavigateTo }) 
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -178,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCallback, onNavigateTo }) 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="w-[44px] h-[44px] min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-800 rounded-xl hover:bg-stone-100 active:scale-95 transition-all shrink-0"
-              aria-label="Toggle menu"
+              aria-label={ui[language].misc.menu}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -253,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCallback, onNavigateTo }) 
 
             {/* Bottom Social Links Bar */}
             <div className="pt-2 border-t border-stone-200/60 flex items-center justify-between px-1 text-xs text-stone-500">
-              <span className="font-sans text-[11px] text-stone-600">Suivez Molita</span>
+              <span className="font-sans text-[11px] text-stone-600">{ui[language].misc.follow}</span>
               <div className="flex items-center gap-2">
                 <span
                   className="w-7 h-7 rounded-full bg-white/80 border border-stone-200 text-stone-600 hover:text-pink-600 hover:border-pink-300 transition-colors flex items-center justify-center cursor-pointer shadow-2xs"

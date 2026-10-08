@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles, ArrowRight, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ui } from '../i18n/content';
 
 interface ComplementaryProductsSectionProps {
   onOpenCallback?: (productId?: string) => void;
@@ -45,7 +46,7 @@ const COMPLEMENTARY_CONFIGS: Record<string, ProductItemConfig> = {
 export const ComplementaryProductsSection: React.FC<ComplementaryProductsSectionProps> = ({
   onOpenCallback,
 }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="soins-complementaires" className="py-14 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative font-sans">
@@ -91,7 +92,7 @@ export const ComplementaryProductsSection: React.FC<ComplementaryProductsSection
                   </span>
                   <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-600 flex items-center gap-1">
                     <ShieldCheck className="w-3 h-3 text-stone-500" />
-                    Qualité Suisse
+                    {ui[language].misc.swissQuality}
                   </span>
                 </div>
 
@@ -163,7 +164,7 @@ export const ComplementaryProductsSection: React.FC<ComplementaryProductsSection
       <div className="mt-8 sm:mt-10 max-w-2xl mx-auto p-4 rounded-2xl bg-stone-50/80 border border-stone-200 text-center flex items-center justify-center gap-2.5 text-xs sm:text-sm text-stone-600">
         <HeartHandshake className="w-4 h-4 text-amber-600 shrink-0" />
         <span>
-          Nos conseillers vous accompagnent pour associer vos formules gummies et soins complémentaires.
+          {ui[language].misc.advisors}
         </span>
       </div>
     </section>

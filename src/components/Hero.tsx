@@ -3,6 +3,7 @@ import { MOLITA_PRODUCTS } from '../data/products';
 import { Product } from '../types';
 import { ArrowDown, Sparkles, ChevronRight, PhoneCall } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ui, localizeProduct } from '../i18n/content';
 
 interface HeroProps {
   onSelectProduct: (product: Product) => void;
@@ -18,7 +19,9 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
   const [mobileProductIndex, setMobileProductIndex] = useState(0);
   const [isFadeVisible, setIsFadeVisible] = useState(true);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const c = ui[language].hero;
+  const m = ui[language].misc;
 
   // Auto-rotate featured product on mobile every 3.5 seconds with smooth fade + scale transition
   useEffect(() => {
@@ -33,40 +36,41 @@ export const Hero: React.FC<HeroProps> = ({
     return () => clearInterval(timer);
   }, []);
 
-  const currentMobileProduct = MOLITA_PRODUCTS[mobileProductIndex];
+  const currentMobileProductBase = MOLITA_PRODUCTS[mobileProductIndex];
+  const currentMobileProduct = localizeProduct(currentMobileProductBase, language);
 
   // Position coordinates for the 5 floating gummies asymmetrically across the hero (desktop)
   const floatingItems = [
     {
-      product: MOLITA_PRODUCTS[0], // Mémoire - Pink
+      product: localizeProduct(MOLITA_PRODUCTS[0], language), // Mémoire - Pink
       pos: 'top-[16%] left-[4%] sm:left-[8%] lg:left-[10%]',
       anim: 'animate-float-slow',
       size: 'w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36',
       badgePos: 'top-full mt-2 left-0',
     },
     {
-      product: MOLITA_PRODUCTS[1], // Vitalité - Orange
+      product: localizeProduct(MOLITA_PRODUCTS[1], language), // Vitalité - Orange
       pos: 'top-[18%] right-[5%] sm:right-[10%] lg:right-[12%]',
       anim: 'animate-float-medium',
       size: 'w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40',
       badgePos: 'top-full mt-2 right-0',
     },
     {
-      product: MOLITA_PRODUCTS[2], // Sommeil - Blue
+      product: localizeProduct(MOLITA_PRODUCTS[2], language), // Sommeil - Blue
       pos: 'bottom-[22%] left-[6%] sm:left-[12%] lg:left-[15%]',
       anim: 'animate-float-fast',
       size: 'w-26 h-26 sm:w-30 sm:h-30 lg:w-36 lg:h-36',
       badgePos: 'bottom-full mb-2 left-0',
     },
     {
-      product: MOLITA_PRODUCTS[3], // Cheveux & Peau - Green
+      product: localizeProduct(MOLITA_PRODUCTS[3], language), // Cheveux & Peau - Green
       pos: 'bottom-[24%] right-[4%] sm:right-[12%] lg:right-[14%]',
       anim: 'animate-float-slow',
       size: 'w-28 h-28 sm:w-32 sm:h-32 lg:w-38 lg:h-38',
       badgePos: 'bottom-full mb-2 right-0',
     },
     {
-      product: MOLITA_PRODUCTS[4], // Détente - Cyan
+      product: localizeProduct(MOLITA_PRODUCTS[4], language), // Détente - Cyan
       pos: 'top-[48%] left-[2%] sm:left-[3%] lg:left-[5%] hidden md:block',
       anim: 'animate-float-medium',
       size: 'w-24 h-24 lg:w-32 lg:h-32',
@@ -165,7 +169,7 @@ export const Hero: React.FC<HeroProps> = ({
                   "{item.product.description}"
                 </p>
                 <div className="mt-2 text-[10px] text-pink-300 font-semibold flex items-center gap-1">
-                  Cliquer pour découvrir le produit →
+                  {c.tooltip}
                 </div>
               </div>
             </div>
@@ -178,27 +182,27 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Brand Kicker / Eyebrow Badge (Merged compact pill for mobile) */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-stone-200 shadow-xs backdrop-blur-xs text-xs font-medium text-stone-700 hover:bg-white transition-all">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-semibold text-stone-900 hidden sm:inline">Molita Suisse •</span>
-          <span>Nutricosmétique & Bien-être</span>
+          <span className="font-semibold text-stone-900 hidden sm:inline">{c.brand}</span>
+          <span>{m.eyebrow}</span>
         </div>
 
         {/* Characterful Google Font Headline */}
         <h1 className="font-serif text-3xl sm:text-6xl lg:text-7xl font-light text-stone-900 tracking-tight leading-[1.15] sm:leading-[1.1]">
-          Le bien-être, <br className="hidden sm:inline" />
+          {c.headlineStart} <br className="hidden sm:inline" />
           <span className="font-normal italic bg-gradient-to-r from-purple-700 via-pink-600 to-amber-600 bg-clip-text text-transparent">
-            en un geste quotidien
+            {c.headlineEnd}
           </span>
         </h1>
 
         {/* Subtitle / Value Statement */}
         <p className="font-sans text-xs sm:text-xl text-stone-600 max-w-2xl leading-relaxed font-normal px-2 sm:px-0">
-          5 formules hautement concentrées, enrichies en actifs nutricosmétiques et extraits botaniques. Conçues avec précision suisse pour sublimer votre éclat et votre bien-être au quotidien.
+          {c.text}
         </p>
 
         {/* Mobile Prominent Featured Bottle Showcase (Auto-Rotating every 3.5s, placed below Subtitle) */}
         <div className="md:hidden flex flex-col items-center justify-center py-1 my-0.5">
           <div
-            onClick={() => onSelectProduct(currentMobileProduct)}
+            onClick={() => onSelectProduct(currentMobileProductBase)}
             className="group relative cursor-pointer flex flex-col items-center"
           >
             {/* Ambient soft glow directly behind bottle */}
@@ -352,7 +356,7 @@ export const Hero: React.FC<HeroProps> = ({
                     />
                   </div>
                   <span className="font-semibold text-xs text-stone-800 shrink-0 whitespace-nowrap">
-                    {p.name.replace('Gummies ', '')}
+                    {m.short[p.id] ?? p.name}
                   </span>
                 </button>
               );
@@ -380,7 +384,7 @@ export const Hero: React.FC<HeroProps> = ({
         <button
           onClick={() => onNavigateTo('confiance')}
           className="p-2 text-stone-400 hover:text-stone-700 transition-colors rounded-full"
-          aria-label="Défiler vers le bas"
+          aria-label={c.scroll}
         >
           <ArrowDown className="w-5 h-5" />
         </button>

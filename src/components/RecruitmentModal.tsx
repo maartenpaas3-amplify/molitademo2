@@ -80,7 +80,7 @@ export const RecruitmentModal: React.FC<RecruitmentModalProps> = ({ onNavigateTo
           {/* Badge Overlay on Image */}
           <div className="absolute bottom-3 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-950/80 border border-purple-500/40 backdrop-blur-md text-purple-200 text-xs font-semibold uppercase tracking-wider">
             <UserPlus className="w-3.5 h-3.5 text-pink-400" />
-            <span>Recrutement Télévente Suisse 🇨🇭</span>
+            <span>Recrutement Télévente Suisse</span>
           </div>
         </div>
 
@@ -99,15 +99,15 @@ export const RecruitmentModal: React.FC<RecruitmentModalProps> = ({ onNavigateTo
           {/* Language Badges */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
             <div className="px-3 py-1.5 rounded-xl bg-stone-900/90 border border-stone-800 text-xs text-stone-200 flex items-center gap-1.5">
-              <span>🇫🇷</span>
+              <span></span>
               <span className="font-medium">Français</span>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-stone-900/90 border border-stone-800 text-xs text-stone-200 flex items-center gap-1.5">
-              <span>🇩🇪</span>
+              <span></span>
               <span className="font-medium">Deutsch</span>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-stone-900/90 border border-stone-800 text-xs text-stone-200 flex items-center gap-1.5">
-              <span>🇮🇹</span>
+              <span></span>
               <span className="font-medium">Italiano</span>
             </div>
           </div>

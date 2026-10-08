@@ -47,7 +47,7 @@ export const RecruitmentCallout: React.FC<RecruitmentCalloutProps> = ({ onNaviga
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <div className="flex items-center gap-2 p-3 rounded-2xl bg-stone-900/80 border border-stone-800/80 shadow-2xs">
                 <div className="w-9 h-9 rounded-xl bg-stone-800 border border-stone-700/80 text-stone-300 flex items-center justify-center shrink-0 text-xs font-bold">
-                  🇫🇷
+                 
                 </div>
                 <div className="text-left">
                   <span className="block text-xs font-semibold text-stone-200">Français</span>
@@ -57,7 +57,7 @@ export const RecruitmentCallout: React.FC<RecruitmentCalloutProps> = ({ onNaviga
 
               <div className="flex items-center gap-2 p-3 rounded-2xl bg-stone-900/80 border border-stone-800/80 shadow-2xs">
                 <div className="w-9 h-9 rounded-xl bg-stone-800 border border-stone-700/80 text-stone-300 flex items-center justify-center shrink-0 text-xs font-bold">
-                  🇩🇪
+                 
                 </div>
                 <div className="text-left">
                   <span className="block text-xs font-semibold text-stone-200">Deutsch</span>
@@ -67,7 +67,7 @@ export const RecruitmentCallout: React.FC<RecruitmentCalloutProps> = ({ onNaviga
 
               <div className="flex items-center gap-2 p-3 rounded-2xl bg-stone-900/80 border border-stone-800/80 shadow-2xs">
                 <div className="w-9 h-9 rounded-xl bg-stone-800 border border-stone-700/80 text-stone-300 flex items-center justify-center shrink-0 text-xs font-bold">
-                  🇮🇹
+                 
                 </div>
                 <div className="text-left">
                   <span className="block text-xs font-semibold text-stone-200">Italiano</span>

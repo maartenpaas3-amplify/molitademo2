@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ui, localizeProduct } from '../i18n/content';
+import { useLanguage } from '../i18n/LanguageContext';
 import { MOLITA_PRODUCTS } from '../data/products';
 import { Product } from '../types';
 import { ProductDetailModal } from './ProductDetailModal';
@@ -15,6 +17,8 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
   selectedProductFromParent,
   onClearSelectedProductFromParent,
 }) => {
+  const { language } = useLanguage();
+  const c = ui[language].products;
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(
     selectedProductFromParent || null
   );
@@ -42,23 +46,24 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-4">
         <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-semibold tracking-wide uppercase">
           <Sparkles className="w-3.5 h-3.5" />
-          La Gamme Molita
+          {c.badge}
         </span>
         <h2 className="font-serif text-3xl sm:text-5xl font-light text-stone-900 tracking-tight">
-          Nos 5 Formules Gummies
+          {c.title}
         </h2>
         <p className="text-base sm:text-lg text-stone-600 font-sans leading-relaxed">
-          Chaque rituel Molita associe des actifs cosmétiques et des extraits naturels de plantes. Découvrez la formule adaptée à votre quotidien.
+          {c.subtitle}
         </p>
       </div>
 
       {/* Product Cards Grid - Asymmetric & Distinctive Circle-in-Circle Flyer Style */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {MOLITA_PRODUCTS.map((product) => {
+        {MOLITA_PRODUCTS.map((baseProduct) => {
+          const product = localizeProduct(baseProduct, language);
           return (
             <div
               key={product.id}
-              onClick={() => setActiveModalProduct(product)}
+              onClick={() => setActiveModalProduct(baseProduct)}
               className="group relative bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden"
             >
               {/* Top Accent Color Bar */}
@@ -74,7 +79,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
                     {product.category}
                   </span>
                   <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-600">
-                    Soin Rituel
+                    {c.ritual}
                   </span>
                 </div>
 
@@ -104,7 +109,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
                     {/* Quick View Floating Pill on Hover */}
                     <div className="absolute inset-0 bg-stone-900/40 backdrop-blur-xs rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-semibold gap-1 z-20">
                       <Eye className="w-4 h-4" />
-                      Voir les détails
+                      {c.details}
                     </div>
                   </div>
                 </div>
@@ -129,14 +134,14 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    setActiveModalProduct(product);
+                    setActiveModalProduct(baseProduct);
                   }}
                   className="px-5 py-2.5 rounded-full text-xs font-semibold text-white transition-all shadow-xs hover:shadow-md hover:scale-105 flex items-center gap-1.5"
                   style={{
                     backgroundColor: product.accentHex,
                   }}
                 >
-                  Découvrir
+                  {c.discover}
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

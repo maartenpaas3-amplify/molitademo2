@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ui, localizeProduct } from '../i18n/content';
+import { useLanguage } from '../i18n/LanguageContext';
 import { MOLITA_PRODUCTS } from '../data/products';
 import { Product } from '../types';
 import { Sparkles, ArrowRight, RotateCcw, CheckCircle2, PhoneCall } from 'lucide-react';
@@ -12,23 +14,25 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
   onSelectProduct,
   onOpenCallback,
 }) => {
+  const { language } = useLanguage();
+  const c = ui[language].quiz;
   const [step, setStep] = useState<number>(1);
   const [goal, setGoal] = useState<string>('');
   const [timeOfDay, setTimeOfDay] = useState<string>('');
   const [secondaryNeed, setSecondaryNeed] = useState<string>('');
 
   const goals = [
-    { id: 'memoire', label: 'Améliorer ma concentration & mémoire', icon: '🧠', targetId: 'memoire' },
-    { id: 'vitalite', label: 'Retrouver de l’énergie & vitalité', icon: '⚡', targetId: 'vitalite' },
-    { id: 'sommeil', label: 'Retrouver un sommeil réparateur', icon: '🌙', targetId: 'sommeil' },
-    { id: 'cheveux', label: 'Sublimer cheveux, peau & ongles', icon: '✨', targetId: 'cheveux-peau' },
-    { id: 'detente', label: 'Réduire le stress & l’anxiété', icon: '🧘', targetId: 'detente' },
+    { id: 'memoire', label: c.goals['memoire'], icon: '🧠', targetId: 'memoire' },
+    { id: 'vitalite', label: c.goals['vitalite'], icon: '⚡', targetId: 'vitalite' },
+    { id: 'sommeil', label: c.goals['sommeil'], icon: '🌙', targetId: 'sommeil' },
+    { id: 'cheveux', label: c.goals['cheveux-peau'], icon: '✨', targetId: 'cheveux-peau' },
+    { id: 'detente', label: c.goals['detente'], icon: '🧘', targetId: 'detente' },
   ];
 
   const timeOptions = [
-    { id: 'matin', label: 'Le matin pour bien démarrer' },
-    { id: 'journee', label: 'Pendant la journée de travail' },
-    { id: 'soir', label: 'En fin de journée / Avant le coucher' },
+    { id: 'matin', label: c.times[0] },
+    { id: 'journee', label: c.times[1] },
+    { id: 'soir', label: c.times[2] },
   ];
 
   const handleGoalSelect = (goalId: string) => {
@@ -75,23 +79,23 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
         <div className="relative z-10 max-w-3xl mx-auto text-center space-y-4 mb-8 sm:mb-10">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-900/80 border border-purple-700/50 text-purple-200 text-xs font-semibold tracking-wide uppercase">
             <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-            Diagnostic Express (1 Minute)
+            {c.badge}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-light text-white tracking-tight">
-            Trouvez votre duo de gummies idéal
+            {c.title}
           </h2>
           <p className="text-stone-300 text-sm sm:text-base font-sans">
-            Répondez à 2 questions pour recevoir une recommandation sur-mesure élaborée par nos spécialistes suisses.
+            {c.subtitle}
           </p>
         </div>
 
         {/* Step Progress Bar */}
         <div className="relative z-10 max-w-md mx-auto mb-8 sm:mb-10 flex items-center justify-between text-xs font-medium text-stone-400">
-          <span className={step >= 1 ? 'text-pink-400 font-semibold' : ''}>1. Objectif</span>
+          <span className={step >= 1 ? 'text-pink-400 font-semibold' : ''}>{c.steps[0]}</span>
           <div className={`h-0.5 flex-1 mx-3 ${step >= 2 ? 'bg-pink-500' : 'bg-stone-800'}`} />
-          <span className={step >= 2 ? 'text-pink-400 font-semibold' : ''}>2. Moment</span>
+          <span className={step >= 2 ? 'text-pink-400 font-semibold' : ''}>{c.steps[1]}</span>
           <div className={`h-0.5 flex-1 mx-3 ${step >= 3 ? 'bg-pink-500' : 'bg-stone-800'}`} />
-          <span className={step === 3 ? 'text-pink-400 font-semibold' : ''}>3. Recommandation</span>
+          <span className={step === 3 ? 'text-pink-400 font-semibold' : ''}>{c.steps[2]}</span>
         </div>
 
         {/* Step 1: Goal */}
@@ -116,7 +120,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
         {step === 2 && (
           <div className="relative z-10 max-w-xl mx-auto space-y-4 animate-fadeIn">
             <h3 className="text-center text-lg font-serif text-stone-200 mb-6">
-              Quand ressentez-vous le plus le besoin d’un soutien ?
+              {c.q2}
             </h3>
             {timeOptions.map((t) => (
               <button
@@ -135,15 +139,17 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
           <div className="relative z-10 max-w-3xl mx-auto space-y-8 animate-fadeIn">
             <div className="text-center space-y-2">
               <h3 className="font-serif text-2xl text-pink-300">
-                Votre Combinaison Sur-Mesure Molita
+                {c.resultTitle}
               </h3>
               <p className="text-stone-300 text-xs sm:text-sm">
-                Basé sur vos réponses, nous vous recommandons cette formule synergique :
+                {c.resultSub}
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {recommendations.map((prod, idx) => (
+              {recommendations.map((baseProd, idx) => {
+                const prod = localizeProduct(baseProd, language);
+                return (
                 <div
                   key={prod.id}
                   className="bg-stone-800/90 rounded-2xl p-6 border border-stone-700 flex flex-col justify-between text-left space-y-4"
@@ -162,7 +168,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                     </div>
                     <div>
                       <span className="text-[10px] text-stone-400 font-semibold uppercase">
-                        {idx === 0 ? 'Rituel Recommandé' : 'Duo Complémentaire'}
+                        {idx === 0 ? c.main : c.duo}
                       </span>
                       <h4 className="font-serif text-lg font-semibold text-white">
                         {prod.name}
@@ -176,21 +182,22 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
 
                   <div className="pt-2 border-t border-stone-700/60 flex items-center justify-between">
                     <button
-                      onClick={() => onSelectProduct(prod)}
+                      onClick={() => onSelectProduct(baseProd)}
                       className="text-xs font-semibold text-pink-400 hover:text-pink-300 transition-colors"
                     >
-                      En savoir plus →
+                      {c.more}
                     </button>
                     <button
-                      onClick={() => onSelectProduct(prod)}
+                      onClick={() => onSelectProduct(baseProd)}
                       className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-white shadow-xs hover:scale-105 transition-all"
                       style={{ backgroundColor: prod.accentHex }}
                     >
-                      Découvrir
+                      {c.discover}
                     </button>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -199,7 +206,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-pink-500/20 transition-all flex items-center justify-center gap-2"
               >
                 <PhoneCall className="w-4 h-4" />
-                Échanger avec un conseiller bien-être (Gratuit)
+                {c.cta}
               </button>
 
               <button
@@ -207,7 +214,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 className="text-xs text-stone-400 hover:text-white transition-colors flex items-center gap-1 py-2"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                Recommencer le test
+                {c.retry}
               </button>
             </div>
           </div>

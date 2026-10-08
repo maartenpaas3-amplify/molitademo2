@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { WHATSAPP_URL } from '../config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ui } from '../i18n/content';
 
 export const FloatingWhatsApp: React.FC = () => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -12,7 +13,7 @@ export const FloatingWhatsApp: React.FC = () => {
       return false;
     }
   });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const handleDismiss = () => {
     setTooltipVisible(false);
@@ -90,7 +91,7 @@ export const FloatingWhatsApp: React.FC = () => {
           <button
             onClick={handleDismiss}
             className="text-stone-400 hover:text-stone-600 p-0.5 rounded-full hover:bg-stone-100 transition-colors shrink-0"
-            aria-label="Fermer l'info-bulle"
+            aria-label={ui[language].misc.closeTip}
           >
             <X className="w-3 h-3" />
           </button>
