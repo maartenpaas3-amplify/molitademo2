@@ -22,10 +22,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
   const [secondaryNeed, setSecondaryNeed] = useState<string>('');
 
   const goals = [
-    { id: 'memoire', label: c.goals['memoire'], icon: '🧠', targetId: 'memoire' },
     { id: 'vitalite', label: c.goals['vitalite'], icon: '⚡', targetId: 'vitalite' },
-    { id: 'sommeil', label: c.goals['sommeil'], icon: '🌙', targetId: 'sommeil' },
-    { id: 'cheveux', label: c.goals['cheveux-peau'], icon: '✨', targetId: 'cheveux-peau' },
     { id: 'detente', label: c.goals['detente'], icon: '🧘', targetId: 'detente' },
   ];
 
@@ -48,13 +45,8 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
   const getRecommendedProducts = (): Product[] => {
     const primary = MOLITA_PRODUCTS.find((p) => p.id === goal) || MOLITA_PRODUCTS[0];
     
-    // Pick complementary product
-    let secondaryId = 'vitalite';
-    if (goal === 'sommeil') secondaryId = 'detente';
-    else if (goal === 'memoire') secondaryId = 'vitalite';
-    else if (goal === 'vitalite') secondaryId = 'memoire';
-    else if (goal === 'cheveux-peau') secondaryId = 'vitalite';
-    else if (goal === 'detente') secondaryId = 'sommeil';
+    // Recommend the other formula as complement
+    const secondaryId = goal === 'detente' ? 'vitalite' : 'detente';
 
     const secondary = MOLITA_PRODUCTS.find((p) => p.id === secondaryId) || MOLITA_PRODUCTS[1];
     return [primary, secondary];

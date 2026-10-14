@@ -85,7 +85,7 @@ export const translations: Record<Language, Translations> = {
       whatsappAria: 'Contacter sur WhatsApp',
       mobile: {
         productsCategory: 'PRODUITS',
-        products: 'Nos 5 Formules Gummies',
+        products: 'Nos Formules Gummies',
         diagnostic: 'Diagnostic sur-mesure',
         story: 'Notre Histoire',
         callbackButton: 'Demander un rappel gratuit',
@@ -95,7 +95,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       primaryCta: 'Découvrir nos rituels',
       quizCta: 'Trouver mon rituel bien-être (Quiz 1 min)',
-      swipeHint: '← Glisser pour voir les 5 formules →',
+      swipeHint: '← Glisser pour voir les formules →',
       formulaOfTheMoment: 'Formule du moment',
       serviceLink: 'Service client Suisse & Conseils : Rappel gratuit',
     },
@@ -147,7 +147,7 @@ export const translations: Record<Language, Translations> = {
           name: 'Sophie M.',
           city: 'Genève',
           rating: 5,
-          text: 'Depuis que je prends les Gummies Sommeil, mes nuits sont bien plus paisibles. Le suivi téléphonique personnalisé fait vraiment la différence.',
+          text: 'Depuis que je prends les Gummies Détente, je suis bien plus sereine au quotidien. Le suivi téléphonique personnalisé fait vraiment la différence.',
         },
         {
           name: 'Marc D.',
@@ -196,7 +196,7 @@ export const translations: Record<Language, Translations> = {
         {
           question: 'Puis-je combiner plusieurs formules de gummies ?',
           answer:
-            'Tout à fait, de nombreux clients associent plusieurs rituels selon leurs besoins (ex. Sommeil et Détente). Votre conseiller peut vous aider à composer la combinaison la plus adaptée à votre profil.',
+            'Tout à fait, de nombreux clients associent plusieurs rituels selon leurs besoins (ex. Vitalité et Détente). Votre conseiller peut vous aider à composer la combinaison la plus adaptée à votre profil.',
         },
       ],
     },
@@ -219,7 +219,7 @@ export const translations: Record<Language, Translations> = {
       whatsappAria: 'Auf WhatsApp kontaktieren',
       mobile: {
         productsCategory: 'PRODUKTE',
-        products: 'Unsere 5 Gummy-Formeln',
+        products: 'Unsere Gummy-Formeln',
         diagnostic: 'Individuelle Diagnose',
         story: 'Unsere Geschichte',
         callbackButton: 'Kostenlosen Rückruf anfordern',
@@ -229,7 +229,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       primaryCta: 'Unsere Rituale entdecken',
       quizCta: 'Mein Wohlfühl-Ritual finden (1-Min-Quiz)',
-      swipeHint: '← Wischen, um alle 5 Formeln zu sehen →',
+      swipeHint: '← Wischen, um alle Formeln zu sehen →',
       formulaOfTheMoment: 'Formel des Moments',
       serviceLink: 'Schweizer Kundenservice & Beratung: Kostenloser Rückruf',
     },
@@ -281,7 +281,7 @@ export const translations: Record<Language, Translations> = {
           name: 'Sophie M.',
           city: 'Genf',
           rating: 5,
-          text: 'Seit ich die Schlaf-Gummies nehme, sind meine Nächte viel erholsamer. Die persönliche telefonische Betreuung macht wirklich den Unterschied.',
+          text: 'Seit ich die Entspannungs-Gummies nehme, bin ich im Alltag viel gelassener. Die persönliche telefonische Betreuung macht wirklich den Unterschied.',
         },
         {
           name: 'Marc D.',
@@ -330,7 +330,7 @@ export const translations: Record<Language, Translations> = {
         {
           question: 'Kann ich mehrere Gummy-Formeln kombinieren?',
           answer:
-            'Absolut, viele Kundinnen und Kunden kombinieren verschiedene Rituale je nach Bedarf (z. B. Schlaf und Entspannung). Ihr Berater hilft Ihnen gerne dabei, die ideale Kombination für Ihr Profil zusammenzustellen.',
+            'Absolut, viele Kundinnen und Kunden kombinieren verschiedene Rituale je nach Bedarf (z. B. Vitalität und Entspannung). Ihr Berater hilft Ihnen gerne dabei, die ideale Kombination für Ihr Profil zusammenzustellen.',
         },
       ],
     },
@@ -353,7 +353,7 @@ export const translations: Record<Language, Translations> = {
       whatsappAria: 'Contatta su WhatsApp',
       mobile: {
         productsCategory: 'PRODOTTI',
-        products: 'Le Nostre 5 Formule Gummies',
+        products: 'Le Nostre Formule Gummies',
         diagnostic: 'Diagnosi personalizzata',
         story: 'La Nostra Storia',
         callbackButton: 'Richiedi richiamata gratuita',
@@ -363,7 +363,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       primaryCta: 'Scopri i nostri rituali',
       quizCta: 'Trova il mio rituale benessere (Quiz 1 min)',
-      swipeHint: '← Scorri per vedere le 5 formule →',
+      swipeHint: '← Scorri per vedere le formule →',
       formulaOfTheMoment: 'Formula del momento',
       serviceLink: 'Servizio clienti Svizzera & Consulenza: Richiamata gratuita',
     },
@@ -415,7 +415,7 @@ export const translations: Record<Language, Translations> = {
           name: 'Sophie M.',
           city: 'Ginevra',
           rating: 5,
-          text: 'Da quando assumo le Gummies Sonno, le mie notti sono molto più tranquille. Il supporto telefonico personalizzato fa davvero la differenza.',
+          text: 'Da quando assumo le Gummies Relax, affronto le giornate con molta più serenità. Il supporto telefonico personalizzato fa davvero la differenza.',
         },
         {
           name: 'Marc D.',
@@ -464,7 +464,7 @@ export const translations: Record<Language, Translations> = {
         {
           question: 'Posso combinare diverse formule di gummies?',
           answer:
-            'Certamente, molti clienti abbinano più rituali a seconda delle proprie esigenze (es. Sonno e Relax). Il tuo consulente ti aiuterà a creare la combinazione ideale per il tuo profilo.',
+            'Certamente, molti clienti abbinano più rituali a seconda delle proprie esigenze (es. Vitalità e Relax). Il tuo consulente ti aiuterà a creare la combinazione ideale per il tuo profilo.',
         },
       ],
     },

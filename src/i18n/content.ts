@@ -206,7 +206,7 @@ const frUi: UiStrings = {
     q2: 'Écoute & Relation Humaine', q2t: 'Un suivi téléphonique personnalisé avant et après votre cure.',
   },
   products: {
-    badge: 'La Gamme Molita', title: 'Nos 5 Formules Gummies',
+    badge: 'La Gamme Molita', title: 'Nos Formules Gummies',
     subtitle: 'Chaque rituel Molita associe des actifs cosmétiques et des extraits naturels de plantes. Découvrez la formule adaptée à votre quotidien.',
     ritual: 'Soin Rituel', details: 'Voir les détails', discover: 'Découvrir',
   },
@@ -240,7 +240,7 @@ const frUi: UiStrings = {
     sub: 'Un conseiller Molita dédié vous recontacte à l’horaire de votre choix pour vous guider.',
     okTitle: 'Demande transmise avec succès !',
     okText: (n, t, p) => `Merci ${n}. Un conseiller vous rappellera à la plage horaire ${t} au ${p}.`,
-    okClose: 'Fermer la fenêtre', product: 'Produit de votre choix', groupGummies: 'Nos 5 Formules Gummies',
+    okClose: 'Fermer la fenêtre', product: 'Produit de votre choix', groupGummies: 'Nos Formules Gummies',
     groupCare: 'Nos Soins Complémentaires', name: 'Nom & Prénom *', namePh: 'ex. Marc Dubois',
     phone: 'Numéro de Téléphone *', canton: 'Canton / Région (Suisse)', other: 'Autre canton',
     time: 'Créneau de rappel souhaité', times: ['Matin (09h - 12h)', 'Après-midi (14h - 17h)', 'Soir (17h - 19h)'],
@@ -248,7 +248,7 @@ const frUi: UiStrings = {
   },
   hero: {
     headlineStart: 'Le bien-être,', brand: 'Molita Suisse •', tooltip: 'Cliquer pour découvrir le produit →', headlineEnd: 'en un geste quotidien',
-    text: '5 formules hautement concentrées, enrichies en actifs nutricosmétiques et extraits botaniques. Conçues avec précision suisse pour sublimer votre éclat et votre bien-être au quotidien.',
+    text: 'Des formules hautement concentrées, enrichies en actifs nutricosmétiques et extraits botaniques. Conçues avec précision suisse pour sublimer votre éclat et votre bien-être au quotidien.',
     scroll: 'Défiler vers le bas',
   },
   footer: {
@@ -278,7 +278,7 @@ const deUi: UiStrings = {
     q2: 'Zuhören & persönlicher Kontakt', q2t: 'Eine persönliche telefonische Betreuung vor und nach Ihrer Kur.',
   },
   products: {
-    badge: 'Das Molita-Sortiment', title: 'Unsere 5 Gummy-Formeln',
+    badge: 'Das Molita-Sortiment', title: 'Unsere Gummy-Formeln',
     subtitle: 'Jedes Molita-Ritual verbindet kosmetische Wirkstoffe mit natürlichen Pflanzenextrakten. Entdecken Sie die Formel, die zu Ihrem Alltag passt.',
     ritual: 'Pflege-Ritual', details: 'Details ansehen', discover: 'Entdecken',
   },
@@ -312,7 +312,7 @@ const deUi: UiStrings = {
     sub: 'Ein persönlicher Molita-Berater ruft Sie zur gewünschten Zeit zurück und begleitet Sie.',
     okTitle: 'Anfrage erfolgreich übermittelt!',
     okText: (n, t, p) => `Vielen Dank ${n}. Ein Berater ruft Sie im Zeitfenster ${t} unter ${p} zurück.`,
-    okClose: 'Fenster schliessen', product: 'Ihr gewünschtes Produkt', groupGummies: 'Unsere 5 Gummy-Formeln',
+    okClose: 'Fenster schliessen', product: 'Ihr gewünschtes Produkt', groupGummies: 'Unsere Gummy-Formeln',
     groupCare: 'Unsere ergänzenden Pflegeprodukte', name: 'Vor- & Nachname *', namePh: 'z. B. Marc Dubois',
     phone: 'Telefonnummer *', canton: 'Kanton / Region (Schweiz)', other: 'Anderer Kanton',
     time: 'Gewünschtes Rückruf-Zeitfenster', times: ['Morgens (09–12 Uhr)', 'Nachmittags (14–17 Uhr)', 'Abends (17–19 Uhr)'],
@@ -320,7 +320,7 @@ const deUi: UiStrings = {
   },
   hero: {
     headlineStart: 'Wohlbefinden,', brand: 'Molita Schweiz •', tooltip: 'Klicken, um das Produkt zu entdecken →', headlineEnd: 'in einer täglichen Geste',
-    text: '5 hochkonzentrierte Formeln, angereichert mit nutrikosmetischen Wirkstoffen und Pflanzenextrakten. Mit Schweizer Präzision entwickelt, damit Sie täglich strahlen und sich wohlfühlen.',
+    text: 'Hochkonzentrierte Formeln, angereichert mit nutrikosmetischen Wirkstoffen und Pflanzenextrakten. Mit Schweizer Präzision entwickelt, damit Sie täglich strahlen und sich wohlfühlen.',
     scroll: 'Nach unten scrollen',
   },
   footer: {
@@ -350,7 +350,7 @@ const itUi: UiStrings = {
     q2: 'Ascolto & rapporto umano', q2t: 'Un accompagnamento telefonico personalizzato prima e dopo il tuo ciclo.',
   },
   products: {
-    badge: 'La gamma Molita', title: 'Le nostre 5 formule Gummies',
+    badge: 'La gamma Molita', title: 'Le nostre formule Gummies',
     subtitle: 'Ogni rituale Molita unisce principi attivi cosmetici ed estratti naturali di piante. Scopri la formula adatta alla tua quotidianità.',
     ritual: 'Rituale di cura', details: 'Vedi i dettagli', discover: 'Scopri',
   },
@@ -384,7 +384,7 @@ const itUi: UiStrings = {
     sub: 'Un consulente Molita dedicato ti ricontatta all’orario che preferisci per guidarti.',
     okTitle: 'Richiesta inviata con successo!',
     okText: (n, t, p) => `Grazie ${n}. Un consulente ti richiamerà nella fascia oraria ${t} al numero ${p}.`,
-    okClose: 'Chiudi la finestra', product: 'Prodotto di tuo interesse', groupGummies: 'Le nostre 5 formule Gummies',
+    okClose: 'Chiudi la finestra', product: 'Prodotto di tuo interesse', groupGummies: 'Le nostre formule Gummies',
     groupCare: 'I nostri trattamenti complementari', name: 'Nome & Cognome *', namePh: 'es. Marco Dubois',
     phone: 'Numero di telefono *', canton: 'Cantone / Regione (Svizzera)', other: 'Altro cantone',
     time: 'Fascia oraria per la richiamata', times: ['Mattina (09–12)', 'Pomeriggio (14–17)', 'Sera (17–19)'],
@@ -392,7 +392,7 @@ const itUi: UiStrings = {
   },
   hero: {
     headlineStart: 'Il benessere,', brand: 'Molita Svizzera •', tooltip: 'Clicca per scoprire il prodotto →', headlineEnd: 'in un gesto quotidiano',
-    text: '5 formule altamente concentrate, arricchite con principi attivi nutricosmetici ed estratti botanici. Create con precisione svizzera per valorizzare la tua luminosità e il tuo benessere ogni giorno.',
+    text: 'Formule altamente concentrate, arricchite con principi attivi nutricosmetici ed estratti botanici. Create con precisione svizzera per valorizzare la tua luminosità e il tuo benessere ogni giorno.',
     scroll: 'Scorri verso il basso',
   },
   footer: {

@@ -1,39 +1,8 @@
 import { Product } from '../types';
-import memoireImg from '../assets/images/gummies_memoire_1786632874806.jpg';
 import vitaliteImg from '../assets/images/gummies_vitalite_1786632887064.jpg';
-import sommeilImg from '../assets/images/gummies_sommeil_1786632899601.jpg';
-import peauCheveuxImg from '../assets/images/gummies_peau_cheveux_1786632911609.jpg';
 import detenteImg from '../assets/images/gummies_detente_1786632921886.jpg';
 
 export const MOLITA_PRODUCTS: Product[] = [
-  {
-    id: 'memoire',
-    name: 'Gummies Mémoire',
-    subName: 'Concentration & Focus Cognitif',
-    category: 'Soutien Cognitif',
-    colorName: 'Magenta / Rose',
-    accentHex: '#ec4899',
-    gradientFromTo: 'from-pink-500 to-rose-600',
-    bgLight: 'bg-pink-50/80',
-    borderColor: 'border-pink-200',
-    textColor: 'text-pink-600',
-    badgeBg: 'bg-pink-100 text-pink-700',
-    vitamins: ['Vitamine B5', 'Vitamine B3', 'Vitamine B6', 'Vitamine B12', 'Vitamine D', 'Vitamine B2'],
-    keyIngredients: ['Extrait de Ginkgo Biloba', 'Zinc Bio-assimilable', 'Vitamines du Complexe B'],
-    description: 'Améliorez votre concentration et votre fonction cognitive avec notre complexe mémoire sur-mesure.',
-    benefits: [
-      'Soutient la mémoire à court et long terme',
-      'Favorise la clarté mentale et la vitesse d’apprentissage',
-      'Réduit la fatigue intellectuelle lors de travaux intenses'
-    ],
-    targetAudience: 'Étudiants, professionnels exigeants et seniors souhaitant préserver leur acuité mentale.',
-    dosage: '2 gummies par jour, de préférence le matin au petit-déjeuner.',
-    taste: 'Framboise & Cassis Sauvage',
-    countPerBottle: 60,
-    priceCHF: 39,
-    flyerCircleClass: 'bg-gradient-to-tr from-pink-500 via-rose-500 to-fuchsia-400',
-    imageUrl: memoireImg
-  },
   {
     id: 'vitalite',
     name: 'Gummies Vitalité',
@@ -61,62 +30,6 @@ export const MOLITA_PRODUCTS: Product[] = [
     priceCHF: 39,
     flyerCircleClass: 'bg-gradient-to-tr from-orange-500 via-amber-500 to-yellow-400',
     imageUrl: vitaliteImg
-  },
-  {
-    id: 'sommeil',
-    name: 'Gummies Sommeil',
-    subName: 'Nuits Paisibles & Endormissement',
-    category: 'Relaxation Nocturne',
-    colorName: 'Bleu Nuit',
-    accentHex: '#3b82f6',
-    gradientFromTo: 'from-blue-600 to-indigo-700',
-    bgLight: 'bg-blue-50/80',
-    borderColor: 'border-blue-200',
-    textColor: 'text-blue-600',
-    badgeBg: 'bg-blue-100 text-blue-700',
-    vitamins: ['Vitamine B6', 'Vitamine B1'],
-    keyIngredients: ['Pétales de Coquelicot', 'Camomille Matricaire', 'Sommités d’Aubépine'],
-    description: 'Pour des nuits tranquilles et un réveil sans torpeur grâce à une synergie de plantes apaisantes et vitamines B.',
-    benefits: [
-      'Facilite un endormissement rapide et naturel',
-      'Améliore la qualité du sommeil profond',
-      'Sans accoutumance ni somnolence au réveil'
-    ],
-    targetAudience: 'Personnes sujettes aux insomnies, au réveil nocturne ou au décalage horaire.',
-    dosage: '2 gummies 30 minutes avant le coucher.',
-    taste: 'Mûre & Verveine Douce',
-    countPerBottle: 60,
-    priceCHF: 39,
-    flyerCircleClass: 'bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-400',
-    imageUrl: sommeilImg
-  },
-  {
-    id: 'cheveux-peau',
-    name: 'Gummies Cheveux et Peau',
-    subName: 'Éclat, Volume & Sublimation',
-    category: 'Nutricosmétique',
-    colorName: 'Vert Botanique',
-    accentHex: '#10b981',
-    gradientFromTo: 'from-emerald-500 to-teal-600',
-    bgLight: 'bg-emerald-50/80',
-    borderColor: 'border-emerald-200',
-    textColor: 'text-emerald-600',
-    badgeBg: 'bg-emerald-100 text-emerald-700',
-    vitamins: ['Vitamine E', 'Vitamine B2', 'Vitamine D', 'Vitamine B6', 'Vitamine B8 (Biotine)'],
-    keyIngredients: ['Biotine Haute Dose', 'Zinc', 'Huile de Pépins de Raisin'],
-    description: 'Révélez une beauté naturelle éclatante avec un cocktail synergique favorisant des cheveux forts et une peau lumineuse.',
-    benefits: [
-      'Stimule la pousse et la densité des cheveux',
-      'Fortifie les ongles cassants',
-      'Hydrate et illumine le grain de peau'
-    ],
-    targetAudience: 'Femmes et hommes désireux de renforcer leur chevelure et sublimer leur peau de l’intérieur.',
-    dosage: '2 gummies par jour à tout moment de la journée.',
-    taste: 'Pêche de Vigne & Pomme Verte',
-    countPerBottle: 60,
-    priceCHF: 39,
-    flyerCircleClass: 'bg-gradient-to-tr from-emerald-500 via-teal-500 to-lime-400',
-    imageUrl: peauCheveuxImg
   },
   {
     id: 'detente',

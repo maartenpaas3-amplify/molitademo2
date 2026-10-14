@@ -57,7 +57,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
       </div>
 
       {/* Product Cards Grid - Asymmetric & Distinctive Circle-in-Circle Flyer Style */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {MOLITA_PRODUCTS.map((baseProduct) => {
           const product = localizeProduct(baseProduct, language);
           return (

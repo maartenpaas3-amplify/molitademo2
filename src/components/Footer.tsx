@@ -46,22 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo, onOpenCallback }) 
           <ul className="space-y-2 text-xs text-stone-400">
             <li>
               <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                {f.memoire}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
                 {f.vitalite}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                {f.sommeil}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => onNavigateTo('produits')} className="hover:text-white transition-colors">
-                {f.peau}
               </button>
             </li>
             <li>

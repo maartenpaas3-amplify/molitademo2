@@ -39,42 +39,21 @@ export const Hero: React.FC<HeroProps> = ({
   const currentMobileProductBase = MOLITA_PRODUCTS[mobileProductIndex];
   const currentMobileProduct = localizeProduct(currentMobileProductBase, language);
 
-  // Position coordinates for the 5 floating gummies asymmetrically across the hero (desktop)
+  // Two floating gummies, mirrored left and right of the headline (desktop)
   const floatingItems = [
     {
-      product: localizeProduct(MOLITA_PRODUCTS[0], language), // Mémoire - Pink
-      pos: 'top-[16%] left-[4%] sm:left-[8%] lg:left-[10%]',
+      product: localizeProduct(MOLITA_PRODUCTS[0], language), // Vitalité - Orange
+      pos: 'top-[30%] left-[3%] sm:left-[6%] lg:left-[9%]',
       anim: 'animate-float-slow',
-      size: 'w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36',
+      size: 'w-32 h-32 sm:w-36 sm:h-36 lg:w-44 lg:h-44',
       badgePos: 'top-full mt-2 left-0',
     },
     {
-      product: localizeProduct(MOLITA_PRODUCTS[1], language), // Vitalité - Orange
-      pos: 'top-[18%] right-[5%] sm:right-[10%] lg:right-[12%]',
+      product: localizeProduct(MOLITA_PRODUCTS[1], language), // Détente - Cyan
+      pos: 'top-[30%] right-[3%] sm:right-[6%] lg:right-[9%]',
       anim: 'animate-float-medium',
-      size: 'w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40',
+      size: 'w-32 h-32 sm:w-36 sm:h-36 lg:w-44 lg:h-44',
       badgePos: 'top-full mt-2 right-0',
-    },
-    {
-      product: localizeProduct(MOLITA_PRODUCTS[2], language), // Sommeil - Blue
-      pos: 'bottom-[22%] left-[6%] sm:left-[12%] lg:left-[15%]',
-      anim: 'animate-float-fast',
-      size: 'w-26 h-26 sm:w-30 sm:h-30 lg:w-36 lg:h-36',
-      badgePos: 'bottom-full mb-2 left-0',
-    },
-    {
-      product: localizeProduct(MOLITA_PRODUCTS[3], language), // Cheveux & Peau - Green
-      pos: 'bottom-[24%] right-[4%] sm:right-[12%] lg:right-[14%]',
-      anim: 'animate-float-slow',
-      size: 'w-28 h-28 sm:w-32 sm:h-32 lg:w-38 lg:h-38',
-      badgePos: 'bottom-full mb-2 right-0',
-    },
-    {
-      product: localizeProduct(MOLITA_PRODUCTS[4], language), // Détente - Cyan
-      pos: 'top-[48%] left-[2%] sm:left-[3%] lg:left-[5%] hidden md:block',
-      anim: 'animate-float-medium',
-      size: 'w-24 h-24 lg:w-32 lg:h-32',
-      badgePos: 'top-1/2 -translate-y-1/2 left-full ml-3',
     },
   ];
 
@@ -94,10 +73,10 @@ export const Hero: React.FC<HeroProps> = ({
         />
 
         {/* Desktop full gradient blobs */}
-        <div className="hidden md:block absolute top-10 -left-20 w-[500px] h-[500px] bg-pink-300/25 rounded-full filter blur-[90px] animate-pulse-glow" />
-        <div className="hidden md:block absolute top-20 -right-20 w-[520px] h-[520px] bg-amber-300/25 rounded-full filter blur-[100px] animate-pulse-glow delay-1000" />
-        <div className="hidden md:block absolute -bottom-10 left-10 w-[480px] h-[480px] bg-blue-300/20 rounded-full filter blur-[90px] animate-pulse-glow delay-2000" />
-        <div className="hidden md:block absolute -bottom-20 right-20 w-[500px] h-[500px] bg-emerald-300/20 rounded-full filter blur-[100px] animate-pulse-glow delay-1500" />
+        <div className="hidden md:block absolute top-10 -left-20 w-[500px] h-[500px] bg-amber-300/25 rounded-full filter blur-[90px] animate-pulse-glow" />
+        <div className="hidden md:block absolute top-20 -right-20 w-[520px] h-[520px] bg-cyan-300/25 rounded-full filter blur-[100px] animate-pulse-glow delay-1000" />
+        <div className="hidden md:block absolute -bottom-10 left-10 w-[480px] h-[480px] bg-orange-200/20 rounded-full filter blur-[90px] animate-pulse-glow delay-2000" />
+        <div className="hidden md:block absolute -bottom-20 right-20 w-[500px] h-[500px] bg-sky-200/20 rounded-full filter blur-[100px] animate-pulse-glow delay-1500" />
         <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-200/15 rounded-full filter blur-[120px] animate-pulse-glow delay-3000" />
       </div>
 
@@ -267,7 +246,7 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
 
-            {/* 5 Indicator Dots for Carousel Progress */}
+            {/* Indicator Dots for Carousel Progress */}
             <div className="flex items-center gap-1.5 mt-2">
               {MOLITA_PRODUCTS.map((p, idx) => (
                 <button
@@ -322,9 +301,8 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Quick Product Chips Bar - Horizontally Scrollable on Mobile */}
         <div className="w-full max-w-full pt-2 relative">
           {/* Subtle Right Gradient Fade Overlay on Mobile to indicate scrollable content gracefully */}
-          <div className="sm:hidden absolute right-0 top-2 bottom-6 w-10 bg-gradient-to-l from-[#faf9f6] via-[#faf9f6]/85 to-transparent z-10 pointer-events-none" />
-
-          <div className="w-full overflow-x-auto no-scrollbar py-2.5 px-4 pr-12 sm:px-6 flex items-center justify-start sm:justify-center gap-2.5 flex-nowrap touch-pan-x snap-x snap-mandatory scroll-smooth">
+          
+          <div className="w-full overflow-x-auto no-scrollbar py-2.5 px-4 sm:px-6 flex items-center justify-center gap-2.5 flex-nowrap touch-pan-x snap-x snap-mandatory scroll-smooth">
             {MOLITA_PRODUCTS.map((p, idx) => {
               const isActiveMobile = idx === mobileProductIndex;
               return (
@@ -362,9 +340,6 @@ export const Hero: React.FC<HeroProps> = ({
               );
             })}
           </div>
-          <span className="text-[10px] text-stone-400 sm:hidden block text-center mt-1 font-sans tracking-wide">
-            {t.hero.swipeHint}
-          </span>
         </div>
       </div>
 
